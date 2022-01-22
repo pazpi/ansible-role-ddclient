@@ -1,0 +1,5 @@
+---
+- name: restart ddclient
+  service:
+    name: postfix
+    state: restarted

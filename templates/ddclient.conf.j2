@@ -1,0 +1,23 @@
+# {{ ansible_managed }}
+
+# General configuration
+daemon={{ ddclient_interval }}
+syslog=yes
+mail={{ ddclient_mail }}
+mail-failure={{ ddclient_mail_failure }}
+pid={{ ddclient_pidfile }}
+
+# IP configuration
+use={{ ddclient_use }}
+web={{ ddclient_web }}
+if={{ ddclient_if }}
+ip={{ ddclient_ip }}
+
+# Domain entries
+{% for entry in ddclient_entries %}
+{% for option in entry.options.keys() %}
+{{ option }}={{ entry.options[option] }}
+{% endfor %}
+{{ entry.domains | join(",") }}
+
+{% endfor %}

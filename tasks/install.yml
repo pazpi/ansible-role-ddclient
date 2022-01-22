@@ -1,0 +1,22 @@
+- block:
+    - name: Download ddclient release
+      get_url:
+        url:
+        dest: /tmp/ddclient.tar.gz
+
+    - name: Unpack ddclient release archive
+      unarchive:
+        src: "https://github.com/ddclient/ddclient/archive/refs/tags/v{{ ddclient_version }}.tar.gz"
+        dest: /tmp
+        remote_src: yes
+
+    - name: Install ddclient binary
+      command: "cp /tmp/ddclient-{{ ddclient_version }}/ddclient {{ ddclient_executable_path }}"
+  always:
+    - name: remove ddclient installer files
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /tmp/ddclient.tar.gz
+        - "/tmp/ddclient-{{ ddclient_version }}"

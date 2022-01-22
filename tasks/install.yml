@@ -1,10 +1,14 @@
-- block:
-    - name: Download ddclient release
-      get_url:
-        url:
-        dest: /tmp/ddclient.tar.gz
+- name: Dependencies are installed
+  apt:
+    name:
+      - debconf
+      - lsb-base
+      - perl
+      - libio-socket-ssl-perl
+      - libdata-validate-ip-perl
 
-    - name: Unpack ddclient release archive
+- block:
+    - name: Download and unpack ddclient release archive
       unarchive:
         src: "https://github.com/ddclient/ddclient/archive/refs/tags/v{{ ddclient_version }}.tar.gz"
         dest: /tmp

@@ -28,5 +28,9 @@ fw-password={{ ddclient_strategy_fw_password }}
 
 # Domain entries
 {% for entry in ddclient_entries %}
-{% for option in entry.options.keys() %}{{ option }}={{ entry.options[option] }}, {% endfor %} {{ entry.domains | join(",") }}
+{% for option in entry.options.keys() %}
+{{ option }}={{ entry.options[option] }}
+{% endfor %}
+{{ entry.domains | join(",") }}
+
 {% endfor %}

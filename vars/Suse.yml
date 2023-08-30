@@ -1,0 +1,8 @@
+---
+ddclient_dependecies:
+  - git
+  - debconf
+  - lsb-base
+  - perl
+  - libio-socket-ssl-perl
+  - libdata-validate-ip-perl
